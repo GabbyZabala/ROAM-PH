@@ -1,0 +1,29 @@
+ROAM – PH
+	      ______      __________     ___      ____       ____
+============/  ---  \====/  ______  \==/  ^  \===|     \===/     |=====+++++
+-----------/  /__/  /---/  /-----/  /-/  /_\  \--|  |\  \_/  /|  |--A-|  PH |
+==========/  ____  \===/  /_____/  /=/  /===\  \=|  |=\     /=|  |=====TTTTT
+	 /_ /    \_ \  \__________/ /__/     \__\|__|  \___/  |__|
+
+ROAM – PH - Code layout
+      ______      __________     ___      ____       ____
+====/  ---  \\====/  ______  \\==/  ^  \\===|     \\===/     |=====+++++
+---/  /__/  /---/  /-----/  /-/  /_\\  \\--|  |\\  \\_/  /|  |--A-|  PH |
+==/  ____  \\===/  /_____/  /=/  /===\\  \\=|  |=\\     /=|  |=====TTTTT
+ /_ /    \\_ \\  \\__________/ /__/     \\__\\|__|  \\___/  |__|
+
+
+Plane Ticket System
+- Plan a Vacation
+	- add plan vacation || buy a ticket
+	- Delete plan vacation || cancel a ticket
+	- View current flight plan
+	- total ticket purchased 
+- View Current Purchased Ticket 
+	- view all ticket
+	- delete current ticket
+- View Availeble Flight
+	- view available flight path
+	- View available plane
+	- Timezone
+- Exit
