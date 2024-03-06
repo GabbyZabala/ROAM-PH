@@ -19,9 +19,11 @@ Plane Ticket System
 	- Delete plan vacation || cancel a ticket
 	- View current flight plan
 	- total ticket purchased 
-- View Current Purchased Ticket 
-	- view all ticket
-	- delete current ticket
+- View User Profile 
+	Must Include:
+		- view Current available ticket // toggle view
+		- delete current ticket 
+		- view History
 - View Availeble Flight
 	- view available flight path
 	- View available plane
