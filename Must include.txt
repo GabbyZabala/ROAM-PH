@@ -13,19 +13,22 @@ ROAM – PH - Code layout
  /_ /    \\_ \\  \\__________/ /__/     \\__\\|__|  \\___/  |__|
 
 
-Plane Ticket System
-- Plan a Vacation
-	- add plan vacation || buy a ticket
-	- Delete plan vacation || cancel a ticket
-	- View current flight plan
-	- total ticket purchased 
-- View User Profile 
-	Must Include:
-		- view Current available ticket // toggle view
-		- delete current ticket 
-		- view History
-- View Availeble Flight
-	- view available flight path
-	- View available plane
-	- Timezone
-- Exit
+Plane Ticket System [8/16]
+/	- Plan a Vacation
+/		- Quick plan on ticket
+		- add plan vacation || buy a ticket
+		- Delete plan vacation || cancel a ticket
+/		- Save Ticket plan
+/		- Return to Index 
+
+/	- View User Profile 
+		Must Include://need to show on profile
+			- view Current available ticket // toggle view
+			- delete current ticket 
+			- view History
+/			- Return to Index
+/	- View Availeble Flight
+		- view available flight path
+		- View available plane
+		- Timezone
+/	- Exit
