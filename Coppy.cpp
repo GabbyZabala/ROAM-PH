@@ -62,7 +62,7 @@ struct UserData {
     string location; // Consumer target place
     data planeTicket; // Ticket number
     string seatClass; // Seat Type
-    data maxTicket[3] = {0,0,0};//storage for access
+    data maxTicket[3] = {-1,-1,-1};//storage for access
     data ticketuse = 0;//ticket indicator
     data tickettotal = sizeof(maxTicket)/sizeof(maxTicket[0]);//info check
     void visual_receipt(){
@@ -282,8 +282,7 @@ lad AIcoms(Variables &var, animatics &an,UserData duser[]){
 					strap = 1;
 				}
 			}
-			else
-				print<<"Your ticket data is blank, please input your ticket data first";
+			else print<<"Your ticket data is blank, please input your ticket data first";
 				break;
 		case 51:
 			switch(strap){
@@ -342,14 +341,17 @@ struct Functions{
 			}
 		}
 	}
-	void DeleteTicket(Variables var, UserData duser[], AirplaneData dplane[], Display display){
+	void DeleteTicketDisplay(Variables var, UserData duser[], AirplaneData dplane[], Display display){
 		display.apDashboard();
 		if(duser[account].ticketuse >0) {
 			for(int i = 1; i <= 4; ++i) {
 				cout<<"\t\t[ "<<i<<" ]\t";
 				if(i<4){
-					if(duser[account].maxTicket[i-1] == 0 && i > duser[account].ticketuse)	print<<"No Data"<<n;
-					else dplane[duser[account].maxTicket[i-1]].output();
+					if(duser[account].maxTicket[i-1] == -1)  {
+					print<<"No Data"<<n;
+					}
+					else
+						dplane[duser[account].maxTicket[i-1]].output();
 				}
 				else print<<"Return to ticket option"<<n;		
 			}
@@ -368,16 +370,16 @@ struct Functions{
 			case 1:
 				duser[account].maxTicket[0] = duser[account].maxTicket[1];
 				duser[account].maxTicket[1] = duser[account].maxTicket[2];
-				duser[account].maxTicket[2] = 0;
+				duser[account].maxTicket[2] = -1;
 				duser[account].ticketuse--;
 				break;
 			case 2:
 				duser[account].maxTicket[1] = duser[account].maxTicket[2];
-				duser[account].maxTicket[2] = 0;
+				duser[account].maxTicket[2] = -1;
 				duser[account].ticketuse--;
 				break;
 			case 3:
-				duser[account].maxTicket[2] = 0;
+				duser[account].maxTicket[2] = -1;
 				duser[account].ticketuse--;
 				break;
 			default:
@@ -385,7 +387,7 @@ struct Functions{
 				break;
 		}
 	}
-	
+			
 }action;
 
 data Main_screen {
@@ -426,7 +428,7 @@ data Main_screen {
 				action.showAP(dplane);
 				break;
 			case 45:	// delete ticket screen
-				action.DeleteTicket(var,duser,dplane,display);
+				action.DeleteTicketDisplay(var,duser,dplane,display);
 				break;
 			case 99:
 				display.frNap();
@@ -554,26 +556,12 @@ data Main_screen {
 				else if(base_command == '2' && var.locale == 3){
 					var.locale = 45;
 				}
+				else if(base_command == '3' && var.locale == 3){
+					print<<"This funciton need to have data base to function";
+					system("pause");
+				}
 				else if(base_command =='4' && var.locale == 3){
 					var.locale = 1;
-				}
-				else if(base_command == '1' && var.locale == 45){
-					var.label = 1;
-					action.DeleteTicketAction(var,duser,var.label);
-					var.locale = 45;	
-					var.label = 0;
-				}
-				else if(base_command == '2' && var.locale == 45){
-					var.label = 2;
-					action.DeleteTicketAction(var,duser,var.label);
-					var.locale = 45;	
-					var.label = 0;
-				}
-				else if(base_command == '3' && var.locale == 45){
-					var.label = 3;
-					action.DeleteTicketAction(var,duser,var.label);
-					var.locale = 45;	
-					var.label = 0;
 				}
 				else if(base_command == '4' && var.locale == 45){
 					var.locale = 3;	
@@ -585,42 +573,10 @@ data Main_screen {
 				}
 			}
 			else {
-				if(base_command=='1' && var.locale == 1) {var.locale = 2;var.optlock = true;}
-				else if(base_command == '2' && var.locale == 1) var.locale = 3;
+				if(base_command=='1' && var.locale == 1) var.locale = 2;
 				else if(base_command == '4' && var.locale == 1) {endgame;}
 				else if(base_command == '/' && var.locale == 1) {clearsys;goto sys;} 
 				else if(base_command == '~') {var.locale = 1;}
-				else if(base_command == '1' && var.locale == 3){
-					if(var.view_currentflight) var.view_currentflight = false;
-					else var.view_currentflight = true;
-				}
-				else if(base_command == '2' && var.locale == 3){
-					var.locale = 45;
-				}
-				else if(base_command =='4' && var.locale == 3){
-					var.locale = 1;
-				}
-				else if(base_command == '1' && var.locale == 45){
-					var.label = 1;
-					action.DeleteTicketAction(var,duser,var.label);
-					var.locale = 45;	
-					var.label = 0;
-				}
-				else if(base_command == '2' && var.locale == 45){
-					var.label = 2;
-					action.DeleteTicketAction(var,duser,var.label);
-					var.locale = 45;	
-					var.label = 0;
-				}
-				else if(base_command == '3' && var.locale == 45){
-					var.label = 3;
-					action.DeleteTicketAction(var,duser,var.label);
-					var.locale = 45;	
-					var.label = 0;
-				}
-				else if(base_command == '4' && var.locale == 45){
-					var.locale = 3;	
-				}
 				else {	var.errorcatch = base_command;
 					var.fullcommand = command;
 					if(var.run >= 1) ++error ;
